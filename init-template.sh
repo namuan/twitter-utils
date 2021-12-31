@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 
 PROJECT=$(basename "$(PWD)")
 PACKAGE=$(basename "$(PWD)" | tr '-' '_')

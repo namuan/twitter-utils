@@ -11,7 +11,7 @@ from py_executable_checklist.workflow import WorkflowBase
 from twitter_utils.browser_session import BrowserSession
 from twitter_utils.query_builder import search_query_builder
 from twitter_utils.tweets_writer import write_raw_tweets
-from twitter_utils.twitter_page import scroll_to_last_page
+from twitter_utils.twitter_page import scroll_to_end_of_page
 
 
 class CreateBrowserSession(WorkflowBase):
@@ -34,7 +34,7 @@ class GetAllTweetsBetweenDateRange(WorkflowBase):
             logging.info("🔎 Search URL: %s", full_url)
             all_tweets = {
                 **all_tweets,
-                **scroll_to_last_page(self.browser_session, full_url),
+                **scroll_to_end_of_page(self.browser_session, full_url),
             }
 
         logging.info("✅ Total tweets: %s", len(all_tweets))

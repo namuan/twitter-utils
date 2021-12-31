@@ -38,7 +38,7 @@ def scroll_to_end(session: BrowserSession) -> None:
     print("⬇️ Scroll down")
 
 
-def scroll_to_last_page(session: BrowserSession, full_url: str) -> dict:
+def scroll_to_end_of_page(session: BrowserSession, full_url: str) -> dict:
     session.current().get(full_url)
     sleep(DELAY)
 

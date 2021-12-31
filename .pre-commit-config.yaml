@@ -62,6 +62,10 @@ repos:
     hooks:
       - id: upgrade-type-hints
         args: [ '--futures=true' ]
+-   repo: https://github.com/syntaqx/git-hooks
+    rev: v0.0.17
+    hooks:
+      - id: shellcheck
 -   repo: https://github.com/returntocorp/semgrep
     rev: 'v0.77.0'
     hooks:

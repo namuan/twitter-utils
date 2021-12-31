@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 
 PROJECT=$(basename "$(PWD)")
 PACKAGE=$(basename "$(PWD)" | tr '-' '_')
@@ -6,10 +6,10 @@ PACKAGE=$(basename "$(PWD)" | tr '-' '_')
 NEW_PROJECT="$1"
 
 cd ..
-cp -R $PROJECT ${NEW_PROJECT}
-cd ${NEW_PROJECT} || echo "Error: Could not find ${NEW_PROJECT}"
-echo $PWD
-./init-template.sh ${PROJECT} ${PACKAGE}
+cp -R "$PROJECT" "$NEW_PROJECT"
+cd "$NEW_PROJECT" || echo "Error: Could not find $NEW_PROJECT"
+echo "$PWD"
+./init-template.sh "$PROJECT" "$PACKAGE"
 poetry install
 echo "☑️ Nearly done. Run the following command to get started:"
 echo "cd $PWD && poetry shell && idea ."
