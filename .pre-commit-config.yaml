@@ -57,6 +57,11 @@ repos:
     rev: v2.30.0
     hooks:
       -   id: pyupgrade
+-   repo: https://github.com/sondrelg/pep585-upgrade
+    rev: v1.0.1
+    hooks:
+      - id: upgrade-type-hints
+        args: [ '--futures=true' ]
 -   repo: https://github.com/returntocorp/semgrep
     rev: 'v0.77.0'
     hooks:

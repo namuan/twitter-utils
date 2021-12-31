@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import re
 from time import sleep
-from typing import Any, Dict, Tuple
+from typing import Any
 
 from twitter_utils.browser_session import BrowserSession
 
@@ -22,7 +24,7 @@ def scroll_to_top(session: BrowserSession) -> None:
     session.current().execute_script("window.scrollTo(0, 10);")
 
 
-def get_tweets_on_page(session: BrowserSession) -> Tuple[list, int]:
+def get_tweets_on_page(session: BrowserSession) -> tuple[list, int]:
     tweets_on_page = session.current().find_elements_by_xpath(SELECTOR)
     no_of_tweets_on_page = len(tweets_on_page)
     print(f"🔄 Total number of tweets on screen: {no_of_tweets_on_page}")
@@ -36,7 +38,7 @@ def scroll_to_end(session: BrowserSession) -> None:
     print("⬇️ Scroll down")
 
 
-def scroll_to_last_page(session: BrowserSession, full_url: str) -> Dict:
+def scroll_to_last_page(session: BrowserSession, full_url: str) -> dict:
     session.current().get(full_url)
     sleep(DELAY)
 
@@ -74,7 +76,7 @@ def scroll_to_last_page(session: BrowserSession, full_url: str) -> Dict:
     return tweets_with_html
 
 
-def extract_data_from(tweet: str, tweet_text: str) -> Tuple[str, str]:
+def extract_data_from(tweet: str, tweet_text: str) -> tuple[str, str]:
     rgx = re.compile(r'a\shref="/(\S+)/status/(\d+)"')
 
     matches = rgx.findall(tweet)

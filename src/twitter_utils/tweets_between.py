@@ -2,11 +2,12 @@
 """
 Downloads tweets between two dates.
 """
+from __future__ import annotations
+
 import datetime
 import sys
 from argparse import ArgumentParser, Namespace, RawDescriptionHelpFormatter
 from pathlib import Path
-from typing import List
 
 from py_executable_checklist.workflow import run_workflow
 
@@ -17,7 +18,7 @@ from twitter_utils.workflows.tweets_between_workflow import (  # type: ignore
 )
 
 
-def parse_args(args: List[str]) -> Namespace:
+def parse_args(args: list[str]) -> Namespace:
     parser = ArgumentParser(description=__doc__, formatter_class=RawDescriptionHelpFormatter)
     parser.add_argument("-a", "--account", required=True, type=str, help="Twitter Handle")
     parser.add_argument(

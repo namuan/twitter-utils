@@ -1,7 +1,10 @@
+from __future__ import annotations
+
 import logging
+from collections.abc import Iterable
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Any, Dict, Iterable
+from typing import Any
 
 from py_executable_checklist.workflow import WorkflowBase
 
@@ -25,7 +28,7 @@ class GetAllTweetsBetweenDateRange(WorkflowBase):
     browser_session: BrowserSession
 
     def run(self, context: dict) -> None:
-        all_tweets: Dict[str, str] = {}
+        all_tweets: dict[str, str] = {}
         for d in self.date_range(self.since, self.until):
             full_url = search_query_builder(self.account, d, d + timedelta(1))
             logging.info("🔎 Search URL: %s", full_url)
