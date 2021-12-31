@@ -70,12 +70,3 @@ class CloseBrowserSession(WorkflowBase):
 
     def run(self, _: dict) -> None:
         self.browser_session.stop()
-
-
-def workflow_steps() -> list:
-    return [
-        CreateBrowserSession,
-        GetAllTweetsBetweenDateRange,
-        WriteTweetsToDirectory,
-        CloseBrowserSession,
-    ]

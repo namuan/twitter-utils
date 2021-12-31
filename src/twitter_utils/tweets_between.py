@@ -13,7 +13,12 @@ from py_executable_checklist.workflow import run_workflow
 
 from twitter_utils import setup_logging
 from twitter_utils.browser_session import BrowserSession
-from twitter_utils.workflows.tweets_between_workflow import workflow_steps
+from twitter_utils.workflows.workflow_steps import (
+    CloseBrowserSession,
+    CreateBrowserSession,
+    GetAllTweetsBetweenDateRange,
+    WriteTweetsToDirectory,
+)
 
 
 def parse_args(args: list[str]) -> Namespace:
@@ -57,6 +62,15 @@ def parse_args(args: list[str]) -> Namespace:
         help="Display context variables at each step",
     )
     return parser.parse_args(args=args)
+
+
+def workflow_steps() -> list:
+    return [
+        CreateBrowserSession,
+        GetAllTweetsBetweenDateRange,
+        WriteTweetsToDirectory,
+        CloseBrowserSession,
+    ]
 
 
 def run_workflow_steps(context: dict) -> None:
