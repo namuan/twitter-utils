@@ -4,10 +4,10 @@ from pathlib import Path
 from typing import Any, Dict, Iterable
 
 from py_executable_checklist.workflow import WorkflowBase
-from tweets_writer import write_raw_tweets
 
 from twitter_utils.browser_session import BrowserSession
 from twitter_utils.query_builder import search_query_builder
+from twitter_utils.tweets_writer import write_raw_tweets
 from twitter_utils.twitter_page import scroll_to_last_page
 
 
