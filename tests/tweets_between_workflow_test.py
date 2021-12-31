@@ -3,8 +3,8 @@ from typing import Any, Optional
 
 from ward import test
 
-import twitter_tools.twitter_page
-from twitter_tools.tweets_between import parse_args, run_workflow_steps
+import twitter_utils.twitter_page
+from twitter_utils.tweets_between import parse_args, run_workflow_steps
 
 
 class TweetHtml:
@@ -58,7 +58,7 @@ class MockBrowserSession:
 
 @test("Should check if tweets are fetched and written for the given date range")
 def test_verify_tweets_written_between_date_range() -> None:
-    twitter_tools.twitter_page.DELAY = 0
+    twitter_utils.twitter_page.DELAY = 0
     output_directory = ".temp"
     parsed_args = parse_args(
         [

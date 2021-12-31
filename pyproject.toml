@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "twitter-tools"
+name = "twitter-utils"
 version = "0.2.1"
 description = "Collection of twitter utilities."
 authors = [
@@ -8,9 +8,9 @@ authors = [
 license = "MIT"
 readme = "README.md"
 
-documentation = "https://namuan.github.io/twitter-tools"
-homepage = "https://namuan.github.io/twitter-tools"
-repository = "https://github.com/namuan/twitter-tools"
+documentation = "https://namuan.github.io/twitter-utils"
+homepage = "https://namuan.github.io/twitter-utils"
+repository = "https://github.com/namuan/twitter-utils"
 
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -26,7 +26,7 @@ classifiers = [
 ]
 
 packages = [
-    { include = "twitter_tools", from = "src" }
+    { include = "twitter_utils", from = "src" }
 ]
 
 [tool.poetry.dependencies]
@@ -84,7 +84,7 @@ include = '\.pyi?$'
 
 [tool.pytest.ini_options]
 addopts = """\
-    --cov twitter_tools \
+    --cov twitter_utils \
     --cov tests \
     --cov-report term-missing \
     --no-cov-on-fail \
@@ -97,7 +97,7 @@ exclude_lines = [
     'pragma: no cover'
 ]
 omit = [
-    'src/twitter_tools/tweets_between.py',
+    'src/twitter_utils/tweets_between.py',
 ]
 
 [tool.mypy]
@@ -112,4 +112,4 @@ check_untyped_defs = true
 show_error_codes = true
 
 [tool.poetry.scripts]
-tweets-between = 'twitter_tools.tweets_between:main'
+tweets-between = 'twitter_utils.tweets_between:main'

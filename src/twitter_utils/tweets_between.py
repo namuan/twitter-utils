@@ -10,9 +10,9 @@ from typing import List
 
 from py_executable_checklist.workflow import run_workflow
 
-from twitter_tools import setup_logging
-from twitter_tools.browser_session import BrowserSession
-from twitter_tools.workflows.tweets_between_workflow import (  # type: ignore
+from twitter_utils import setup_logging
+from twitter_utils.browser_session import BrowserSession
+from twitter_utils.workflows.tweets_between_workflow import (  # type: ignore
     workflow_steps,
 )
 

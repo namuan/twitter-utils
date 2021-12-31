@@ -2,7 +2,7 @@ import re
 from time import sleep
 from typing import Any, Dict, Tuple
 
-from twitter_tools.browser_session import BrowserSession
+from twitter_utils.browser_session import BrowserSession
 
 DELAY = 5  # seconds
 SELECTOR = "//*[@role='article']"

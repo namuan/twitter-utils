@@ -1,17 +1,17 @@
 # Twitter tools
 
-[![PyPI](https://img.shields.io/pypi/v/twitter-tools?style=flat-square)](https://pypi.python.org/pypi/twitter-tools/)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/twitter-tools?style=flat-square)](https://pypi.python.org/pypi/twitter-tools/)
-[![PyPI - License](https://img.shields.io/pypi/l/twitter-tools?style=flat-square)](https://pypi.python.org/pypi/twitter-tools/)
+[![PyPI](https://img.shields.io/pypi/v/twitter-utils?style=flat-square)](https://pypi.python.org/pypi/twitter-utils/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/twitter-utils?style=flat-square)](https://pypi.python.org/pypi/twitter-utils/)
+[![PyPI - License](https://img.shields.io/pypi/l/twitter-utils?style=flat-square)](https://pypi.python.org/pypi/twitter-utils/)
 
 
 ---
 
-**Documentation**: [https://namuan.github.io/twitter-tools](https://namuan.github.io/twitter-tools)
+**Documentation**: [https://namuan.github.io/twitter-utils](https://namuan.github.io/twitter-utils)
 
-**Source Code**: [https://github.com/namuan/twitter-tools](https://github.com/namuan/twitter-tools)
+**Source Code**: [https://github.com/namuan/twitter-utils](https://github.com/namuan/twitter-utils)
 
-**PyPI**: [https://pypi.org/project/twitter-tools/](https://pypi.org/project/twitter-tools/)
+**PyPI**: [https://pypi.org/project/twitter-utils/](https://pypi.org/project/twitter-utils/)
 
 ---
 
@@ -20,7 +20,7 @@ Collection of twitter utilities.
 ## Installation
 
 ```sh
-pip install twitter-tools
+pip install twitter-utils
 ```
 
 ## Example Usage

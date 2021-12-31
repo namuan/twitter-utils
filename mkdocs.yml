@@ -1,5 +1,5 @@
 site_name: Twitter tools - Collection of twitter utilities.
-repo_url: https://github.com/namuan/twitter-tools
+repo_url: https://github.com/namuan/twitter-utils
 
 theme:
   name: material
@@ -32,4 +32,4 @@ plugins:
             show_signature_annotations: true
             show_source: true
       watch:
-        - src/twitter_tools
+        - src/twitter_utils
