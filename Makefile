@@ -19,6 +19,9 @@ clean: ## Clean package
 pre-commit: ## Manually run all precommit hooks
 	poetry run pre-commit run --all-files
 
+pre-commit-tool: ## Manually run a single pre-commit hook
+	poetry run pre-commit run $(TOOL) --all-files
+
 tests: clean ## Run all tests
 	poetry run ward
 

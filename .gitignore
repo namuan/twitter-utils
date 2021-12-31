@@ -80,3 +80,7 @@ venv.bak/
 
 # Others
 poetry.toml
+fireprofile
+geckodriver.log
+backroom/
+.temp/
