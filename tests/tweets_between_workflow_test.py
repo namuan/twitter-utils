@@ -1,6 +1,5 @@
-# mypy: ignore-errors
-
 from pathlib import Path
+from typing import Any, Optional
 
 from ward import test
 
@@ -9,14 +8,14 @@ from twitter_tools.tweets_between import parse_args, run_workflow_steps
 
 
 class TweetHtml:
-    def __init__(self, html):
+    def __init__(self, html: str) -> None:
         self.html = html
 
     @property
-    def text(self):
+    def text(self) -> str:
         return self.html
 
-    def get_attribute(self, attribute):
+    def get_attribute(self, attribute: str) -> Optional[str]:
         if attribute == "outerHTML":
             return self.html
 
@@ -24,18 +23,19 @@ class TweetHtml:
 
 
 class MockWebDriver:
-    def __init__(self):
+    url_requested: str
+
+    def __init__(self) -> None:
         print("MockWebDriver.__init__()")
-        self.url_requested = None
 
     def get(self, url: str) -> str:
         self.url_requested = url
         return "<html></html>"
 
-    def close(self):
+    def close(self) -> None:
         print("MockWebDriver.close()")
 
-    def find_elements_by_xpath(self, selector: str):
+    def find_elements_by_xpath(self, selector: str) -> list:
         assert selector
         return [TweetHtml("""<html><a href="/some-user/status/12345"></html>""")]
 
@@ -44,16 +44,15 @@ class MockWebDriver:
 
 
 class MockBrowserSession:
-    def __init__(self):
-        self.session = None
+    session: Any
 
-    def start(self):
+    def start(self) -> None:
         self.session = MockWebDriver()
 
-    def current(self):
+    def current(self) -> Any:
         return self.session
 
-    def stop(self):
+    def stop(self) -> None:
         self.session.close()
 
 
