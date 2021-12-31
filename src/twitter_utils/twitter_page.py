@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import logging
+import random
 import re
 from time import sleep
 from typing import Any
@@ -38,7 +40,32 @@ def scroll_to_end(session: BrowserSession) -> None:
     print("⬇️ Scroll down")
 
 
-def scroll_to_end_of_page(session: BrowserSession, full_url: str) -> dict:
+def scroll_speed() -> int:
+    return random.randint(300, 500)
+
+
+def scroll_and_collect_tweets_from_page(session: BrowserSession, full_url: str) -> dict:
+    session.current().get(full_url)
+    sleep(DELAY)
+    tweets_with_html = {}
+    current_scroll_position, new_height = 0, 1
+    while current_scroll_position <= new_height:
+        tweets_on_page, no_of_tweets_on_page = get_tweets_on_page(session)
+        for tweet in tweets_on_page:
+            tweet_html = tweet.get_attribute("outerHTML")
+            _, status_id = extract_data_from(tweet_html, tweet.text)
+            tweets_with_html[status_id] = tweet_html
+
+        session.current().execute_script(f"window.scrollTo(0, {current_scroll_position});")
+        new_height = session.current().execute_script("return document.body.scrollHeight;")
+        current_scroll_position += scroll_speed()
+        logging.info("current_scroll_position: %s , new_height: %s", current_scroll_position, new_height)
+        # Wait to any dynamic elements to load
+        sleep(DELAY)
+    return tweets_with_html
+
+
+def collect_tweets_from_page(session: BrowserSession, full_url: str) -> dict:
     session.current().get(full_url)
     sleep(DELAY)
 

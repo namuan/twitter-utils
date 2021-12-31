@@ -13,9 +13,7 @@ from py_executable_checklist.workflow import run_workflow
 
 from twitter_utils import setup_logging
 from twitter_utils.browser_session import BrowserSession
-from twitter_utils.workflows.tweets_between_workflow import (  # type: ignore
-    workflow_steps,
-)
+from twitter_utils.workflows.tweets_between_workflow import workflow_steps
 
 
 def parse_args(args: list[str]) -> Namespace:

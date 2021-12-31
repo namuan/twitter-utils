@@ -39,8 +39,11 @@ class MockWebDriver:
         assert selector
         return [TweetHtml("""<html><a href="/some-user/status/12345"></html>""")]
 
-    def execute_script(self, script: str) -> None:
+    def execute_script(self, script: str) -> Optional[int]:
         assert script
+        if "return" in script:
+            return 100
+        return None
 
 
 class MockBrowserSession:

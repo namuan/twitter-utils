@@ -11,7 +11,10 @@ from py_executable_checklist.workflow import WorkflowBase
 from twitter_utils.browser_session import BrowserSession
 from twitter_utils.query_builder import search_query_builder
 from twitter_utils.tweets_writer import write_raw_tweets
-from twitter_utils.twitter_page import scroll_to_end_of_page
+from twitter_utils.twitter_page import (
+    collect_tweets_from_page,
+    scroll_and_collect_tweets_from_page,
+)
 
 
 class CreateBrowserSession(WorkflowBase):
@@ -29,15 +32,22 @@ class GetAllTweetsBetweenDateRange(WorkflowBase):
 
     def run(self, context: dict) -> None:
         all_tweets: dict[str, str] = {}
+        all_tweets_by_other_methods: dict[str, str] = {}
         for d in self.date_range(self.since, self.until):
             full_url = search_query_builder(self.account, d, d + timedelta(1))
             logging.info("🔎 Search URL: %s", full_url)
             all_tweets = {
                 **all_tweets,
-                **scroll_to_end_of_page(self.browser_session, full_url),
+                **scroll_and_collect_tweets_from_page(self.browser_session, full_url),
+            }
+            all_tweets_by_other_methods = {
+                **all_tweets_by_other_methods,
+                **collect_tweets_from_page(self.browser_session, full_url),
             }
 
+        logging.info("Decision 🧠 🧠 🧠")
         logging.info("✅ Total tweets: %s", len(all_tweets))
+        logging.info("✅ Old method Total tweets: %s", len(all_tweets_by_other_methods))
         context["all_tweets"] = all_tweets
 
     def date_range(self, since: datetime, until: datetime) -> Iterable:
