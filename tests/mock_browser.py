@@ -1,6 +1,9 @@
 from typing import Any, Optional
 
+import twitter_utils.twitter_page
 from ward import fixture
+
+twitter_utils.twitter_page.DELAY = 0
 
 
 class TweetHtml:
@@ -51,7 +54,7 @@ class MockBrowserSession:
 
 @fixture
 def output_directory() -> str:
-    return ".temp"
+    return ".temp" # Generate random directory name to avoid false positives
 
 
 @fixture

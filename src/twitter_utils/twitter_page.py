@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 import random
 import re
-from time import sleep
+from twitter_utils import sleep_for
 
 from twitter_utils.browser_session import BrowserSession
 
@@ -13,7 +13,7 @@ SELECTOR = "//*[@role='article']"
 
 def scroll_and_collect_tweets_from_page(session: BrowserSession, full_url: str) -> dict:
     session.current().get(full_url)
-    sleep(DELAY)
+    sleep_for(DELAY)
     tweets_with_html = {}
     current_scroll_position, new_height = 0, 1
     while current_scroll_position <= new_height:
@@ -29,7 +29,7 @@ def scroll_and_collect_tweets_from_page(session: BrowserSession, full_url: str) 
         current_scroll_position += _scroll_speed()
         logging.info("current_scroll_position: %s , new_height: %s", current_scroll_position, new_height)
         # Wait to any dynamic elements to load
-        sleep(DELAY)
+        sleep_for(DELAY)
     return tweets_with_html
 
 

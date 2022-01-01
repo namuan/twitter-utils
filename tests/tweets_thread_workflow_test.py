@@ -15,7 +15,7 @@ def test_verify_tweets_on_a_page(
     twitter_utils.twitter_page.DELAY = 0
     parsed_args = parse_args(
         [
-            "--account",
+            "--query",
             "jack",
             "--tweet-id",
             "1474263588651",
@@ -29,5 +29,5 @@ def test_verify_tweets_on_a_page(
     tweets_thread_workflow(context)
 
     assert mock_browser_session.current().url_requested == "https://twitter.com/jack/status/1474263588651"
-    files_in_output_folder = Path(output_directory).joinpath("raw-tweets", "jack").glob("*.html")
+    files_in_output_folder = Path(output_directory).joinpath("raw-tweets", "user-jack").glob("*.html")
     assert len(list(files_in_output_folder)) == 1

@@ -7,11 +7,28 @@ from pathlib import Path
 from typing import Any
 
 from py_executable_checklist.workflow import WorkflowBase
-
 from twitter_utils.browser_session import BrowserSession
 from twitter_utils.tweets_writer import write_raw_tweets
 from twitter_utils.twitter_page import scroll_and_collect_tweets_from_page
 from twitter_utils.twitter_url_builder import search_query_builder, status_endpoint
+
+
+def is_hash_tag(text: str) -> bool:
+    return text.startswith('#')
+
+
+def codify(query: str) -> str:
+    if is_hash_tag(query):
+        return f"%23{query[1:]}"
+    else:
+        return query
+
+
+def directory_for(query: str) -> str:
+    if is_hash_tag(query):
+        return f"hashtag-{query[1:]}"
+    else:
+        return f"user-{query}"
 
 
 class CreateBrowserSession(WorkflowBase):
@@ -22,12 +39,12 @@ class CreateBrowserSession(WorkflowBase):
 
 
 class GetAllTweetsOnPage(WorkflowBase):
-    account: str
+    query: str
     tweet_id: str
     browser_session: BrowserSession
 
     def run(self, context: dict) -> None:
-        full_url = status_endpoint(self.account, self.tweet_id)
+        full_url = status_endpoint(self.query, self.tweet_id)
         logging.info("🔎 Twitter status URL: %s", full_url)
         all_tweets: dict[str, str] = scroll_and_collect_tweets_from_page(self.browser_session, full_url)
 
@@ -36,7 +53,7 @@ class GetAllTweetsOnPage(WorkflowBase):
 
 
 class GetAllTweetsBetweenDateRange(WorkflowBase):
-    account: str
+    query: str
     since: datetime
     until: datetime
     browser_session: BrowserSession
@@ -44,7 +61,7 @@ class GetAllTweetsBetweenDateRange(WorkflowBase):
     def run(self, context: dict) -> None:
         all_tweets: dict[str, str] = {}
         for d in self.date_range(self.since, self.until):
-            full_url = search_query_builder(self.account, d, d + timedelta(1))
+            full_url = search_query_builder(codify(self.query), d, d + timedelta(1))
             logging.info("🔎 Search URL: %s", full_url)
             all_tweets = {
                 **all_tweets,
@@ -58,14 +75,17 @@ class GetAllTweetsBetweenDateRange(WorkflowBase):
         for n in range(int((until - since).days)):
             yield since + timedelta(n)
 
+    def is_hash_tag(self, query):
+        return query.startswith("#")
+
 
 class WriteTweetsToDirectory(WorkflowBase):
-    account: str
+    query: str
     output_directory: Path
     all_tweets: dict
 
     def run(self, _: dict) -> None:
-        output_directory = write_raw_tweets(self.output_directory, self.account, self.all_tweets)
+        output_directory = write_raw_tweets(self.output_directory, directory_for(self.query), self.all_tweets)
         logging.info("📝 Tweets written in %s", output_directory)
 
 

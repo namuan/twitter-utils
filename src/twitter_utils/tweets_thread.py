@@ -22,7 +22,7 @@ from twitter_utils.workflows.workflow_steps import (
 
 def parse_args(args: list[str]) -> Namespace:
     parser = ArgumentParser(description=__doc__, formatter_class=RawDescriptionHelpFormatter)
-    parser.add_argument("-a", "--account", required=True, type=str, help="Twitter Handle")
+    parser.add_argument("-q", "--query", required=True, type=str, help="Twitter Handle")
     parser.add_argument(
         "-t",
         "--tweet-id",
