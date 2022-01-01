@@ -3,8 +3,8 @@ from __future__ import annotations
 import logging
 import random
 import re
-from twitter_utils import sleep_for
 
+from twitter_utils import sleep_for
 from twitter_utils.browser_session import BrowserSession
 
 DELAY = 5  # seconds
@@ -36,7 +36,7 @@ def scroll_and_collect_tweets_from_page(session: BrowserSession, full_url: str) 
 def _get_tweets_on_page(session: BrowserSession) -> tuple[list, int]:
     tweets_on_page = session.current().find_elements_by_xpath(SELECTOR)
     no_of_tweets_on_page = len(tweets_on_page)
-    logging.info(f"🔄 Total number of tweets on screen: {no_of_tweets_on_page}")
+    logging.info("🔄 Total number of tweets on screen: %s", no_of_tweets_on_page)
     return tweets_on_page, no_of_tweets_on_page
 
 

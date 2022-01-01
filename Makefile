@@ -14,6 +14,8 @@ deps: ## Install/Update dependencies
 
 clean: ## Clean package
 	find . -type d -name '__pycache__' | xargs rm -rf
+	find . -type d -name '.temp' | xargs rm -rf
+	find . -type f -name '.coverage' | xargs rm -rf
 	rm -rf build dist
 
 pre-commit: ## Manually run all precommit hooks

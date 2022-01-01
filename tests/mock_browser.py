@@ -1,7 +1,10 @@
+from pathlib import Path
 from typing import Any, Optional
 
-import twitter_utils.twitter_page
 from ward import fixture
+
+import twitter_utils.twitter_page
+from twitter_utils import random_string
 
 twitter_utils.twitter_page.DELAY = 0
 
@@ -53,8 +56,8 @@ class MockBrowserSession:
 
 
 @fixture
-def output_directory() -> str:
-    return ".temp" # Generate random directory name to avoid false positives
+def output_directory() -> Path:
+    return Path(".temp").joinpath(random_string(10))
 
 
 @fixture

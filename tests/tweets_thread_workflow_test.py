@@ -10,7 +10,7 @@ from twitter_utils.tweets_thread import parse_args, tweets_thread_workflow
 
 @test("Should check if tweets in a twitter thread are fetched and written")
 def test_verify_tweets_on_a_page(
-    output_directory: str = output_directory(), mock_browser_session: Any = mock_browser_session()
+    output_directory: Path = output_directory(), mock_browser_session: Any = mock_browser_session()
 ) -> None:
     twitter_utils.twitter_page.DELAY = 0
     parsed_args = parse_args(
@@ -20,7 +20,7 @@ def test_verify_tweets_on_a_page(
             "--tweet-id",
             "1474263588651",
             "--output-directory",
-            ".temp",
+            output_directory.as_posix(),
         ]
     )
     context = parsed_args.__dict__
@@ -29,5 +29,5 @@ def test_verify_tweets_on_a_page(
     tweets_thread_workflow(context)
 
     assert mock_browser_session.current().url_requested == "https://twitter.com/jack/status/1474263588651"
-    files_in_output_folder = Path(output_directory).joinpath("raw-tweets", "user-jack").glob("*.html")
+    files_in_output_folder = output_directory.joinpath("raw-tweets", "user-jack").glob("*.html")
     assert len(list(files_in_output_folder)) == 1

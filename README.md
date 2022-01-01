@@ -50,7 +50,7 @@ tweets-thread -a <<account>> -t <<tweet-id>> -o temp-dir
 
 ## Using twarc to capture tweet data using Twitter API
 
-You can use [twarc](https://twarc-project.readthedocs.io/en/latest/) to get tweets given a list of ids. 
+You can use [twarc](https://twarc-project.readthedocs.io/en/latest/) to get tweets given a list of ids.
 Twarc uses Twitter API so you'll need those credentials.
 [Twarc hydrate](https://twarc-project.readthedocs.io/en/latest/twarc1_en_us/#hydrate) command that will grab tweet data given a list of ids.
 ```shell

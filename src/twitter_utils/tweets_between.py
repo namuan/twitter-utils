@@ -23,7 +23,9 @@ from twitter_utils.workflows.workflow_steps import (
 
 def parse_args(args: list[str]) -> Namespace:
     parser = ArgumentParser(description=__doc__, formatter_class=RawDescriptionHelpFormatter)
-    parser.add_argument("-q", "--query", required=True, type=str, help="A twitter handle or a hash tag. Use '#' to start a hash tag.")
+    parser.add_argument(
+        "-q", "--query", required=True, type=str, help="A twitter handle or a hash tag. Use '#' to start a hash tag."
+    )
     parser.add_argument(
         "-s",
         "--since",

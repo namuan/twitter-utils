@@ -1,5 +1,7 @@
-import time
 import logging
+import random
+import string
+import time
 
 
 def setup_logging() -> None:  # pragma: no cover
@@ -13,5 +15,9 @@ def setup_logging() -> None:  # pragma: no cover
 
 
 def sleep_for(seconds: int) -> None:  # pragma: no cover
-    logging.info(f"😴 Sleeping for {seconds} seconds...")
+    logging.info("😴 Sleeping for %s seconds...", seconds)
     time.sleep(seconds)
+
+
+def random_string(length: int) -> str:
+    return "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))

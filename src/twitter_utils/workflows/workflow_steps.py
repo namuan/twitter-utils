@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from py_executable_checklist.workflow import WorkflowBase
+
 from twitter_utils.browser_session import BrowserSession
 from twitter_utils.tweets_writer import write_raw_tweets
 from twitter_utils.twitter_page import scroll_and_collect_tweets_from_page
@@ -14,7 +15,7 @@ from twitter_utils.twitter_url_builder import search_query_builder, status_endpo
 
 
 def is_hash_tag(text: str) -> bool:
-    return text.startswith('#')
+    return text.startswith("#")
 
 
 def codify(query: str) -> str:
@@ -75,7 +76,7 @@ class GetAllTweetsBetweenDateRange(WorkflowBase):
         for n in range(int((until - since).days)):
             yield since + timedelta(n)
 
-    def is_hash_tag(self, query):
+    def is_hash_tag(self, query: str) -> bool:
         return query.startswith("#")
 
 
