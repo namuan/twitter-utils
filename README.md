@@ -48,6 +48,19 @@ tweets-between --account <<account>> --since 2020-04-10 --until 2020-04-25 -o te
 tweets-thread -a <<account>> -t <<tweet-id>> -o temp-dir
 ```
 
+## Using twarc to capture tweet data using Twitter API
+
+You can use [twarc](https://twarc-project.readthedocs.io/en/latest/) to get tweets given a list of ids. 
+Twarc uses Twitter API so you'll need those credentials.
+[Twarc hydrate](https://twarc-project.readthedocs.io/en/latest/twarc1_en_us/#hydrate) command that will grab tweet data given a list of ids.
+```shell
+# Depending on your output directory, here is a command to get the list of file name (tweet ids)
+find <output-folder>/*.html | while read file; do basename $file ".html"; done > <target-file-with-list-of-tweet-ids>
+
+# These feed this list of ids to twarc
+twarc hydrate <target-file-with-list-of-tweet-ids> > <file-with-all-tweets-data>.jsonl
+```
+
 ## Development
 
 * Clone this repository
