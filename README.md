@@ -25,7 +25,7 @@ pip install twitter-utils
 
 ## Example Usage
 
-This works better with a logged in user otherwise Twitter bombards you with popups and other crap.
+All commands in `twitter-utils` work better with an authenticated user otherwise Twitter bombards you with crap.
 The following command is tested on MacOS and will create a symlink to your Firefox profile.
 Please replace the source path with your own.
 
@@ -59,6 +59,20 @@ find <output-folder>/*.html | while read file; do basename $file ".html"; done >
 
 # These feed this list of ids to twarc
 twarc hydrate <target-file-with-list-of-tweet-ids> > <file-with-all-tweets-data>.jsonl
+```
+#### Selecting WebDriver
+
+All commands in `twitter-utils` uses Firefox by default, but it can be overridden by providing an alternate browser.
+Supporting Firefox, Safari and Chrome.
+
+To use Safari instead of Firefox, pass the `--browser` option before specifying the sub-command.
+
+```
+<cmd> --browser safari ...
+```
+And to use Chrome
+```
+<cmd> --browser chrome ...
 ```
 
 ## Development
