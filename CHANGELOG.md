@@ -1,3 +1,14 @@
+## 0.5.0 (2022-01-01)
+
+### Refactor
+
+- Use temporary directory for generating files when running tests to avoid conflicts
+- Replace print statements
+
+### Feat
+
+- Allow capturing tweets for a #hashtag between date ranges
+
 ## 0.4.0 (2022-01-01)
 
 ### Refactor
