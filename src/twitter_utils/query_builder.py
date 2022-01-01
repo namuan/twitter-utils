@@ -18,3 +18,7 @@ def search_query_builder(from_account: str, since: datetime, until: datetime) ->
     u = until_query_param(until)
     f = from_account_query_param(from_account)
     return f"https://twitter.com/search?q=({f})%20{u}%20{s}&src=typed_query"
+
+
+def status_endpoint(from_account: str, tweet_id: str) -> str:
+    return f"https://twitter.com/{from_account}/status/{tweet_id}"

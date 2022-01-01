@@ -13,16 +13,16 @@ homepage = "https://namuan.github.io/twitter-utils"
 repository = "https://github.com/namuan/twitter-utils"
 
 classifiers = [
-  "Development Status :: 4 - Beta",
-  "Intended Audience :: Developers",
-  "Operating System :: OS Independent",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.7",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Topic :: Software Development :: Libraries :: Python Modules",
-  "Typing :: Typed",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
 ]
 
 packages = [
@@ -85,20 +85,17 @@ include = '\.pyi?$'
 [tool.pytest.ini_options]
 addopts = """\
     --cov twitter_utils \
-    --cov tests \
     --cov-report term-missing \
     --no-cov-on-fail \
 """
 
 [tool.coverage.report]
-fail_under = 100
+fail_under = 78
 exclude_lines = [
     'if TYPE_CHECKING:',
     'pragma: no cover'
 ]
-omit = [
-    'src/twitter_utils/tweets_between.py',
-]
+
 
 [tool.mypy]
 disallow_any_unimported = true
@@ -113,3 +110,4 @@ show_error_codes = true
 
 [tool.poetry.scripts]
 tweets-between = 'twitter_utils.tweets_between:main'
+tweets-thread = 'twitter_utils.tweets_thread:main'

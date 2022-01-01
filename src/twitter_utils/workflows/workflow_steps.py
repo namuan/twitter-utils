@@ -9,12 +9,9 @@ from typing import Any
 from py_executable_checklist.workflow import WorkflowBase
 
 from twitter_utils.browser_session import BrowserSession
-from twitter_utils.query_builder import search_query_builder
+from twitter_utils.query_builder import search_query_builder, status_endpoint
 from twitter_utils.tweets_writer import write_raw_tweets
-from twitter_utils.twitter_page import (
-    collect_tweets_from_page,
-    scroll_and_collect_tweets_from_page,
-)
+from twitter_utils.twitter_page import scroll_and_collect_tweets_from_page
 
 
 class CreateBrowserSession(WorkflowBase):
@@ -22,6 +19,20 @@ class CreateBrowserSession(WorkflowBase):
 
     def run(self, _: dict) -> None:
         self.browser_session.start()
+
+
+class GetAllTweetsOnPage(WorkflowBase):
+    account: str
+    tweet_id: str
+    browser_session: BrowserSession
+
+    def run(self, context: dict) -> None:
+        full_url = status_endpoint(self.account, self.tweet_id)
+        logging.info("🔎 Twitter status URL: %s", full_url)
+        all_tweets: dict[str, str] = scroll_and_collect_tweets_from_page(self.browser_session, full_url)
+
+        logging.info("✅ Total tweets: %s", len(all_tweets))
+        context["all_tweets"] = all_tweets
 
 
 class GetAllTweetsBetweenDateRange(WorkflowBase):
@@ -32,7 +43,6 @@ class GetAllTweetsBetweenDateRange(WorkflowBase):
 
     def run(self, context: dict) -> None:
         all_tweets: dict[str, str] = {}
-        all_tweets_by_other_methods: dict[str, str] = {}
         for d in self.date_range(self.since, self.until):
             full_url = search_query_builder(self.account, d, d + timedelta(1))
             logging.info("🔎 Search URL: %s", full_url)
@@ -40,14 +50,8 @@ class GetAllTweetsBetweenDateRange(WorkflowBase):
                 **all_tweets,
                 **scroll_and_collect_tweets_from_page(self.browser_session, full_url),
             }
-            all_tweets_by_other_methods = {
-                **all_tweets_by_other_methods,
-                **collect_tweets_from_page(self.browser_session, full_url),
-            }
 
-        logging.info("Decision 🧠 🧠 🧠")
         logging.info("✅ Total tweets: %s", len(all_tweets))
-        logging.info("✅ Old method Total tweets: %s", len(all_tweets_by_other_methods))
         context["all_tweets"] = all_tweets
 
     def date_range(self, since: datetime, until: datetime) -> Iterable:

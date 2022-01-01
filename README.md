@@ -25,8 +25,27 @@ pip install twitter-utils
 
 ## Example Usage
 
-```shell
+This works better with a logged in user otherwise Twitter bombards you with popups and other crap.
+The following command is tested on MacOS and will create a symlink to your Firefox profile.
+Please replace the source path with your own.
 
+```shell
+ln -s "~/Library/Application\ Support/Firefox/Profiles/.." $(pwd)/fireprofile
+```
+
+All commands take an argument to specify the output directory.
+Each tweet captured will be saved in the output directory to a file with the file name as the tweet id.
+
+### Grab tweets of an account between two dates
+
+```shell
+tweets-between --account <<account>> --since 2020-04-10 --until 2020-04-25 -o temp-dir
+```
+
+### Grab tweets on a page
+
+```shell
+tweets-thread -a <<account>> -t <<tweet-id>> -o temp-dir
 ```
 
 ## Development
