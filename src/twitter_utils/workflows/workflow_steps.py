@@ -9,9 +9,9 @@ from typing import Any
 from py_executable_checklist.workflow import WorkflowBase
 
 from twitter_utils.browser_session import BrowserSession
-from twitter_utils.query_builder import search_query_builder, status_endpoint
 from twitter_utils.tweets_writer import write_raw_tweets
 from twitter_utils.twitter_page import scroll_and_collect_tweets_from_page
+from twitter_utils.twitter_url_builder import search_query_builder, status_endpoint
 
 
 class CreateBrowserSession(WorkflowBase):

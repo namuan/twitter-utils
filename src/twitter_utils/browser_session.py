@@ -3,7 +3,7 @@ from typing import Any
 from selenium import webdriver  # type: ignore
 
 
-class BrowserSession:
+class BrowserSession:  # pragma: no cover
     def __init__(self, given_browser: Any) -> None:
         self.browser = given_browser
         self.session = webdriver.Firefox("fireprofile")

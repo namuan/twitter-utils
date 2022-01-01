@@ -73,17 +73,17 @@ def workflow_steps() -> list:
     ]
 
 
-def run_workflow_steps(context: dict) -> None:
+def tweets_between_workflow(context: dict) -> None:
     run_workflow(context, workflow_steps())
 
 
-def main() -> None:
+def main() -> None:  # pragma: no cover
     setup_logging()
     parsed_args = parse_args(sys.argv[1:])
     context = parsed_args.__dict__
     context["browser_session"] = BrowserSession(parsed_args.browser)
-    run_workflow_steps(context)
+    tweets_between_workflow(context)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()
