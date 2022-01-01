@@ -95,6 +95,9 @@ exclude_lines = [
     'pragma: no cover'
 ]
 
+[tool.ward]
+order = "random"
+capture-output = false
 
 [tool.mypy]
 disallow_any_unimported = true

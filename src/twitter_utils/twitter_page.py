@@ -36,7 +36,7 @@ def scroll_and_collect_tweets_from_page(session: BrowserSession, full_url: str) 
 def _get_tweets_on_page(session: BrowserSession) -> tuple[list, int]:
     tweets_on_page = session.current().find_elements_by_xpath(SELECTOR)
     no_of_tweets_on_page = len(tweets_on_page)
-    print(f"🔄 Total number of tweets on screen: {no_of_tweets_on_page}")
+    logging.info(f"🔄 Total number of tweets on screen: {no_of_tweets_on_page}")
     return tweets_on_page, no_of_tweets_on_page
 
 

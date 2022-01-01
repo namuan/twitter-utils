@@ -18,15 +18,12 @@ class TweetHtml:
 class MockWebDriver:
     url_requested: str
 
-    def __init__(self) -> None:
-        print("MockWebDriver.__init__()")
-
     def get(self, url: str) -> str:
         self.url_requested = url
         return "<html></html>"
 
     def close(self) -> None:
-        print("MockWebDriver.close()")
+        pass
 
     def find_elements_by_xpath(self, selector: str) -> list:
         assert selector
