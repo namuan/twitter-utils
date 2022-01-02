@@ -53,7 +53,7 @@ def _extract_data_from(tweet: str, tweet_text: str) -> tuple[str, str]:
     status_id = "unknown"
 
     if not matches:
-        print(f"❌ Unable to find twitter status identifier in \n => {tweet_text}")
+        logging.warning("❌ Unable to find twitter status identifier in => 🐦 %s 🐦", tweet_text)
     else:
         twitter_handle, status_id = matches[0]
 

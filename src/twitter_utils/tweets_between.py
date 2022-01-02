@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Downloads tweets between two dates.
 """

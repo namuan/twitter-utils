@@ -6,6 +6,6 @@ def write_raw_tweets(output_directory: Path, tweets_group: str, tweets: dict) ->
     output_directory.mkdir(parents=True, exist_ok=True)
 
     for tweet_id, tweet_html in tweets.items():
-        output_directory.joinpath(tweet_id + ".html").write_text(tweet_html)
+        output_directory.joinpath(f"{tweet_id}.html").write_text(tweet_html)
 
     return output_directory

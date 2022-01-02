@@ -79,7 +79,6 @@ venv.bak/
 .idea/
 
 # Others
-poetry.toml
 fireprofile
 geckodriver.log
 backroom/
