@@ -31,6 +31,10 @@ tests: clean ## Run all tests
 	poetry run coverage run -m ward
 	poetry run coverage xml -i
 
+coverage-report: ## Opens coverage report in browser
+	poetry run coverage html -i
+	open htmlcov/index.html
+
 build: pre-commit tests ## Build package
 	poetry build
 
