@@ -45,8 +45,6 @@ flake8-comprehensions = "*"
 flake8-debugger = "*"
 flake8-logging-format = "*"
 isort = "*"
-mkdocstrings = "*"
-mkdocs-material = "*"
 mypy = "*"
 pep8-naming = "*"
 pre-commit = "*"
@@ -59,6 +57,12 @@ tryceratops = "*"
 commitizen = "^2.20.3"
 ward = "^0.65.0-beta.0"
 
+
+[tool.poetry.group.dev.dependencies]
+mkdocs = "^1.4.2"
+mkdocstrings = "^0.19.1"
+mkdocs-material = "^9.0.3"
+mkdocstrings-python = "^0.8.3"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
